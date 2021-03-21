@@ -1,5 +1,5 @@
+import random
 table = []
-game = 0
 
 def fill_table_x(table):
     for aux in range(9):
@@ -48,7 +48,6 @@ def verif_cross(table, opcion):
         return 0
 
 
-
 def win_game(table, opcion):
     if verif_horizontal(table, opcion) == 0:
         return 0
@@ -57,24 +56,49 @@ def win_game(table, opcion):
     elif verif_cross(table, opcion) == 0:
         return 0
 
+
+def play_game(selection):
+    game = 0
+    while game != 9:
+        if game % 2 == 0:
+            print("Turn of player 1")
+            fill_cell(table, "X")
+            show_table(table)
+            if win_game(table, "X") == 0:
+                game = 9
+            else:
+                game = game +1
+        else:
+            if selection == "Y":
+                print("Computer Turn")
+                aux = True
+                while aux:
+                    value = random.randint(0,5)
+                    print(value)
+                    if table[value] == " ":
+                        table[value] = "0"
+                        aux = False
+                show_table(table)
+
+                if win_game(table, "0") == 0:
+                    game = 9
+                else:
+                    game = game + 1
+            else:
+                print("Computer Turn")
+                fill_cell(table,"0")
+                show_table(table)
+                if win_game(table, "0") == 0:
+                    game = 9
+                else:
+                    game = game + 1
+
+
+print("Welcome to tic tac toe")
+selection = input("Do you want to play alone: Y or N  ").upper()
 fill_table_x(table)
 show_table(table)
-
-while game != 9:
-    if game % 2 == 0:
-        print("Turn of player 1")
-        fill_cell(table, "X")
-        show_table(table)
-        if win_game(table, "X") == 0:
-            game = 9
-        else:
-            game = game +1
-
-    else:
-        print("Computer Turn")
-        fill_cell(table,"0")
-        show_table(table)
-        if win_game(table, "0") == 0:
-            game = 9
-        else:
-            game = game + 1
+if selection == "N":
+    play_game(selection)
+elif selection == "Y":
+    play_game(selection)
