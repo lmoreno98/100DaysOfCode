@@ -26,8 +26,7 @@ def sum(label,x1,x2):
     label.config(text = f"sum is : {sum}")
     return
 
-# Create the first label and entry
-
+# Create the first labels
 num1_la = Label(win_calculator,text="First Number")
 num1_la.grid(row = 1, column = 0)
 num2_la = Label(win_calculator,text="Second Number")
@@ -36,15 +35,17 @@ label = Label(win_calculator)
 label.grid(row = 6, column = 1)
 
 
-# Create the second label and entry
+# Create the variables
 x1 = StringVar()
 x2 = StringVar()
 
+# Create the entrys
 num1_en = Entry(win_calculator, textvariable = x1)
 num1_en.grid(row = 1, column = 1)
 num2_en = Entry(win_calculator, textvariable = x2)
 num2_en.grid(row = 2, column = 1)
 
+# Call the button and show the results
 sum = partial(sum,label,x1,x2)
 button = Button(win_calculator, text = "Calculate", command = sum)
 button.grid(row = 3, column = 0)
