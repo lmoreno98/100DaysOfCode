@@ -65,7 +65,7 @@ editmenu.add_separator()
 editmenu.add_command(label = "Exit", command = win.quit)
 
 
-menubar.add_cascade(label = "Edit", menu = editmenu)
+menubar.add_cascade(label = "Edit   ", menu = editmenu)
 
 
 win1.config(menu = menubar)
