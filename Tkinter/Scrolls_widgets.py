@@ -26,5 +26,4 @@ for line in range(100):
     list.insert(END,"This is line no is" + str(line))
 list.pack(side = LEFT, fill = BOTH)
 
-
 win1.mainloop()
