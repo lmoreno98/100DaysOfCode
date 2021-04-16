@@ -1,2 +1,2 @@
 # 100DaysOfCode
-Practice and trainig python for 100 days
+100 Days of data analisis training in courses
