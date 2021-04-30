@@ -1,0 +1,9 @@
+Advantages
+1. Trees are very easy to explain
+2. Decision trees more closely mirror human decision-making than other regression and classification approach
+3. XGTrees can be displayed graphically, and are easily interpreted even by a non-expert
+4. Trees can easily handle qualitive predictors without the need to create dummy vatiables
+
+
+Disadvantages
+1. Trees generally do not have the same level of predictive accuracy as some of the other and regreddion and classification approaches
