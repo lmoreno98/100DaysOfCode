@@ -87,7 +87,12 @@ Tablas:Production.Product
 Campos: ProductID, ListPrice, Name
 */
 
-
+SELECT DISTINCT p1.ProductID,p1.ListPrice,p1.Name, p2.ProductID,p2.ListPrice,p2.Name 
+FROM Production.Product AS p1
+INNER JOIN Production.Product AS p2
+ON p1.ListPrice = p2.ListPrice
+WHERE p1.ProductID > p2.ProductID
+ORDER BY p1.ListPrice DESC;
 
 /*
 ------------------------------------------------------------------------------------------------------------
@@ -96,7 +101,14 @@ Tablas: Production.Product, Purchasing.ProductVendor, Purchasing.Vendor
 Campos: Name ,ProductID,  BusinessEntityID, ProductSubcategoryID
 */
 
-
+SELECT p.Name AS Name_Product, v.Name AS Name_proveedor, p.ProductSubcategoryID
+FROM Production.Product AS p
+INNER JOIN Purchasing.ProductVendor AS pv
+ON p.ProductID = pv.ProductID
+LEFT JOIN Purchasing.Vendor AS v
+ON pv.BusinessEntityID = v.BusinessEntityID
+WHERE p.ProductSubcategoryID = 15
+ORDER BY v.Name;
 
 /*
 ------------------------------------------------------------------------------------------------------------
@@ -104,3 +116,9 @@ Mostrar todas las personas (nombre y apellido) y en el caso que sean empleados m
 Tablas: Person.Person, HumanResources.Employee
 Campos: FirstName, LastName, LoginID, BusinessEntityID
 */
+
+SELECT p.FirstName, p.LastName, e.BusinessEntityID
+FROM Person.Person AS p
+LEFT JOIN HumanResources.Employee AS e
+ON p.BusinessEntityID = e.BusinessEntityID
+ORDER BY e.BusinessEntityID DESC;
