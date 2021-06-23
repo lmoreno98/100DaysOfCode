@@ -148,7 +148,7 @@ Tablas: Production.Product
 Campos:​​ListPrice
 */
 
-SELECT *
+SELECT TOP 10 *
 FROM Production.Product
 WHERE ListPrice IN (SELECT TOP 10 ListPrice
 					FROM Production.Product
@@ -161,6 +161,11 @@ Tablas: Production.Product, Sales.SalesOrderDetail
 Campos: Name, ProductID , OrderQty
 */
 
+SELECT Name
+FROM Production.Product
+WHERE ProductID IN (SELECT ProductID
+					FROM Sales.SalesOrderDetail
+					WHERE OrderQty >= 20);
 
 /*
 Laboratorio  ALL - ANY
@@ -173,6 +178,12 @@ Tablas: Production.Product, Production.ProductSubcategory
 Campos: Name, ProductSubcategoryID          
 */
 
+SELECT *
+FROM Production.Product
+WHERE ProductSubcategoryID = ALL (SELECT ProductSubcategoryID
+								  FROM Production.ProductSubcategory
+								  WHERE Name LIKE '%Wheels%');
+
 /*
 ----------------------------------------------------------------------------------------
 Mostrar los clientes ubicados en un territorio no cubierto por ningún vendedor​ 
@@ -180,9 +191,22 @@ Tablas: Sales.Customer, Sales.SalesPerson
 Campos: TerritoryID          
 */
 
+SELECT *
+FROM Sales.Customer
+where TerritoryID <> ALL (SELECT TerritoryID
+						  FROM Sales.SalesPerson);
+
+
 /*
 ----------------------------------------------------------------------------------------
-Listar los productos cuyos precios de venta sean mayores o iguales que el precio de venta    máximo de cualquier subcategoría de producto.​  
+Listar los productos cuyos precios de venta sean mayores o iguales 
+que el precio de venta máximo de cualquier subcategoría de producto.​  
 Tablas: Production.Product               
 Campos: Name, ListPrice, ProductSubcategoryID
 */
+
+SELECT Name
+FROM Production.Product
+WHERE ListPrice >= ANY (SELECT MAX (ListPrice)
+							FROM Production.Product
+							GROUP BY ProductSubcategoryID);
