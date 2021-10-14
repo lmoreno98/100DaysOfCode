@@ -1,0 +1,8 @@
+
+
+--DF es variable dataframe
+df.to_csv('example.csv')  --delimita campos con la coma.
+o
+df.to_csv('example.csv', delimiter=';')  --delimita campos con punto y coma.
+
+
